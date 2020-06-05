@@ -1,9 +1,14 @@
+
+let gridSize = 32;
+document.documentElement.style.setProperty("--gridSize", gridSize); 
+
 const container = document.querySelector("#container");
 container.classList.add("container");
-const gridSize = 64;
 
-//let root = document.documentElement;
-document.documentElement.style.setProperty("--gridSize", gridSize); 
+const buttonNew = document.querySelector("#new");
+buttonNew.addEventListener("click",newGrid);
+
+const buttonClear = document.querySelector("#clear");
 
 
 function createCell() {
@@ -18,8 +23,17 @@ function createGrid () {
     };
 };
 
-function clearGrid () {
+function removeGrid () {
    container.innerHTML = "";
 };
 
+function newGrid(){
+    gridSize = prompt("Please enter the size of the grid:", "32");
+    removeGrid();
+    document.documentElement.style.setProperty("--gridSize", gridSize); 
+    createGrid();
+};
 
+function drawCell(){
+    cell.style.backgroundColor ="black";
+}
