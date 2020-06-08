@@ -1,4 +1,6 @@
 
+// Initialization of both JS and CSS variable: "gridSize"
+
 let gridSize = 32;
 document.documentElement.style.setProperty("--gridSize", gridSize); 
 
@@ -9,17 +11,26 @@ const buttonNew = document.querySelector("#new");
 buttonNew.addEventListener("click",newGrid);
 
 const buttonClear = document.querySelector("#clear");
+buttonClear.addEventListener("click", clearGrid);
 
+let cells;
+let newCell;
+
+function changeToBlack (e){
+    e.target.classList.add("black");
+};
 
 function createCell() {
-    const cell = document.createElement("div");
-    container.appendChild(cell);
-    cell.classList.add("cell");
+    newCell = document.createElement("div");
+    container.appendChild(newCell);
+    newCell.classList.add("cell");
 };
 
 function createGrid () {
     for (let i = 1; i<= gridSize*gridSize; i++){
         createCell();
+        cells = Array.from(container.querySelectorAll(".cell"));
+        cells.forEach(cell => cell.addEventListener("mouseenter", changeToBlack));
     };
 };
 
@@ -34,6 +45,6 @@ function newGrid(){
     createGrid();
 };
 
-function drawCell(){
-    cell.style.backgroundColor ="black";
-}
+function clearGrid(){
+    cells.forEach(cell => cell.classList.remove("black"));
+};
