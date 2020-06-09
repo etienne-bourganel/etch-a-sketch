@@ -1,6 +1,3 @@
-
-// Initialization of both JS and CSS variable: "gridSize"
-
 let gridSize = 32;
 document.documentElement.style.setProperty("--gridSize", gridSize); 
 
